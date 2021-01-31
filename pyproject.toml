@@ -1,0 +1,79 @@
+[tool.poetry]
+name = "kancelaria"
+version = "0.1.0"
+description = "Office application of the Józef Piłsudski Institute of America"
+authors = ["Tomasz Kalata <klingaroo@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "~3.8"
+briefcase = "^0.3.4"
+PySide2 = "^5.15.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.0"
+pytest-mock = "^3.5.1"
+pytest-cov = "^2.11.1"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+    /(
+        \.eggs
+       | \.git
+       | \.hg
+       | \.mypy_cache
+       | \.tox
+       | \.venv
+       | _build
+       | buck-out
+       | build
+       | dist
+    )/
+    | temp.py
+)
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.briefcase]
+project_name = "Kancelaria"
+bundle = "com.example"
+version = "0.0.1"
+url = "https://example.com/kancelaria"
+license = "MIT license"
+author = 'Tomasz Kalata'
+author_email = "klingaroo@gmail.com"
+
+[tool.briefcase.app.kancelaria]
+formal_name = "Kancelaria"
+description = "Office application of the Jozef Pilsudski Institute of America"
+icon = "src/kancelaria/resources/kancelaria"
+sources = ['src/kancelaria']
+requires = [
+    'pyside2==5.15.2',]
+
+
+[tool.briefcase.app.kancelaria.macOS]
+requires = []
+
+[tool.briefcase.app.kancelaria.linux]
+requires = []
+system_requires = []
+
+[tool.briefcase.app.kancelaria.windows]
+requires = []
+
+# Mobile deployments
+[tool.briefcase.app.kancelaria.iOS]
+requires = []
+
+[tool.briefcase.app.kancelaria.android]
+requires = []
