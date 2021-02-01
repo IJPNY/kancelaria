@@ -15,4 +15,4 @@ WORK-IN-PROGRESS
 + Member database
 
 ## Icons Credits
-Icons by [GraphicLoads](https://iconarchive.com/artist/graphicloads.html) used under (Freeware license)[https://creativecommons.org/publicdomain/zero/1.0/]
+Icons by [GraphicLoads](https://iconarchive.com/artist/graphicloads.html) used under [Freeware license](https://creativecommons.org/publicdomain/zero/1.0/)
