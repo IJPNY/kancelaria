@@ -23,6 +23,7 @@ from PySide2.QtWidgets import (
 from PySide2.QtGui import QIcon
 
 from . import __version__, __author__
+from .members.gui import MembersWindow
 
 
 class Kancelaria(QMainWindow):
@@ -49,14 +50,14 @@ class Kancelaria(QMainWindow):
         layout.addLayout(layout_left)
 
         # bulletin button
-        btn_bulletin = QPushButton("Biuletyn")
+        btn_bulletin = QPushButton("Bulletin")
         btn_bulletin.setIcon(QIcon("./src/kancelaria/resources/Google-Drive-icon.png"))
         btn_bulletin.setIconSize(QSize(48, 48))
         btn_bulletin.clicked.connect(self.launch_bulletin_widget)
         layout_right.addWidget(btn_bulletin)
 
         # members db button
-        btn_members = QPushButton("Członkowie")
+        btn_members = QPushButton("Members")
         btn_members.setIcon(QIcon("./src/kancelaria/resources/Photobooth-icon.png"))
         btn_members.setIconSize(QSize(48, 48))
         btn_members.clicked.connect(self.launch_members_widget)
@@ -122,8 +123,9 @@ class Kancelaria(QMainWindow):
     def launch_bulletin_widget(self):
         print("Launch here bulletin window.")
 
-    def launch_members_widget(self):
-        print("Launch members widget.")
+    def launch_members_widget(self, s):
+        self.widget = MembersWindow()
+        self.widget.show()
 
 
 def main():
