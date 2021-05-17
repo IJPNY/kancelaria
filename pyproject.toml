@@ -11,6 +11,7 @@ readme = "README.md"
 python = "~3.8"
 briefcase = "^0.3.4"
 PySide2 = "^5.15.2"
+SQLAlchemy = "^1.4.15"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.0"
