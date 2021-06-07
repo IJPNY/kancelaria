@@ -11,12 +11,13 @@ from kancelaria.members.datastore import (
     MemberActivity,
     MemberCategory,
     Salutation,
+    State,
 )
 
 
 def test_activity_table_repr():
     row = Activity(code="x", name="foo")
-    assert str(row) == "<Activity(aid='None', code='x', name='foo')>"
+    assert str(row) == "<Activity(kid='None', code='x', name='foo')>"
 
 
 def test_address_table_repr():
@@ -31,28 +32,28 @@ def test_address_table_repr():
     )
     assert (
         str(row)
-        == "<Address(adid='None', memberId='None', address1='foo', address2='None', cityId='1', postalCode='None', stateId=1, contryId='1', company='None', email='spam', fax='None', phoneLand='None', phoneMobile='None', isPrimary='True', isWork='False', stampCreated='None', stampModified='None')>"
+        == "<Address(kid='None', memberId='None', address1='foo', address2='None', cityId='1', postalCode='None', stateId=1, contryId='1', company='None', email='spam', fax='None', phoneLand='None', phoneMobile='None', isPrimary='True', isWork='False', stampCreated='None', stampModified='None')>"
     )
 
 
 def test_bulletin_category_table_repr():
     row = BulletinCategory(name="foo", bulletinSort=1)
-    assert str(row) == "<BulletinCategory(bcid='None', name='foo', bulletinSort='1')>"
+    assert str(row) == "<BulletinCategory(kid='None', name='foo', bulletinSort='1')>"
 
 
 def test_city_table_repr():
     row = City(name="foo")
-    assert str(row) == "<City(ctid='None', name='foo')>"
+    assert str(row) == "<City(kid='None', name='foo')>"
 
 
 def test_country_table_repr():
     row = Country(name="foo")
-    assert str(row) == "<Country(coid='None', name='foo')>"
+    assert str(row) == "<Country(kid='None', name='foo')>"
 
 
 def test_entity_type_table_repr():
     row = EntityType(name="foo")
-    assert str(row) == "<EntityType(eid='None', name='foo')>"
+    assert str(row) == "<EntityType(kid='None', name='foo')>"
 
 
 def test_member_table_repr():
@@ -67,7 +68,7 @@ def test_member_table_repr():
     )
     assert (
         str(row)
-        == "<Member(mid='None', nameLast='bar', nameFirst='foo', stampCreated='None', stampModified='None', entityTypeId='2', isDeceased='False', memberCategoryId='1', postSalutation='None', salutationId='1', unknownAddress='False')>"
+        == "<Member(kid='None', nameLast='bar', nameFirst='foo', stampCreated='None', stampModified='None', entityTypeId='2', isDeceased='False', memberCategoryId='1', postSalutation='None', salutationId='1', unknownAddress='False')>"
     )
 
 
@@ -86,10 +87,15 @@ def test_member_category_table_repr():
     )
     assert (
         str(row)
-        == "<MemberCategory(mcid='None', name='foo', description='spam', annualDues='100.0', isMember='True', bulletinId='1')>"
+        == "<MemberCategory(kid='None', name='foo', description='spam', annualDues='100.0', isMember='True', bulletinId='1')>"
     )
 
 
 def test_salutation_table_repr():
     row = Salutation(phrase="foo")
-    assert str(row) == "<Salutation(sid='None', phrase='foo')>"
+    assert str(row) == "<Salutation(kid='None', phrase='foo')>"
+
+
+def test_state_table_repr():
+    row = State(name="foo")
+    assert str(row) == "<State(kid='None', name='foo')>"
