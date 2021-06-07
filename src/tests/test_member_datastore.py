@@ -5,13 +5,18 @@ from kancelaria.members.datastore import (
     Address,
     BulletinCategory,
     City,
+    Contribution,
+    ContributionType,
     Country,
     EntityType,
+    KTable,
     Member,
     MemberActivity,
     MemberCategory,
+    Profile,
     Salutation,
     State,
+    Transaction,
 )
 
 
@@ -46,6 +51,19 @@ def test_city_table_repr():
     assert str(row) == "<City(kid='None', name='foo')>"
 
 
+def test_contribution_table_repr():
+    row = Contribution(amount="100.00", contributionTypeId=1, deleted=False, memberId=1)
+    assert (
+        str(row)
+        == "<Contribution(kid='None', amount='100.00', contributionDate='None', contributionTypeId='1', deleted='False', memberId='1', stampCreated='None', stampModified='None')>"
+    )
+
+
+def test_contribution_type_table_repr():
+    row = ContributionType(name="foo")
+    assert str(row) == "<ContributionType(kid='None', name='foo')>"
+
+
 def test_country_table_repr():
     row = Country(name="foo")
     assert str(row) == "<Country(kid='None', name='foo')>"
@@ -54,6 +72,11 @@ def test_country_table_repr():
 def test_entity_type_table_repr():
     row = EntityType(name="foo")
     assert str(row) == "<EntityType(kid='None', name='foo')>"
+
+
+def test_ktable_table_repr():
+    row = KTable(name="foo")
+    assert str(row) == "<KTable(kid='None', name='foo')>"
 
 
 def test_member_table_repr():
@@ -91,6 +114,11 @@ def test_member_category_table_repr():
     )
 
 
+def test_profile_table_repr():
+    row = Profile(name="foo")
+    assert str(row) == "<Profile(kid='None', name='foo')>"
+
+
 def test_salutation_table_repr():
     row = Salutation(phrase="foo")
     assert str(row) == "<Salutation(kid='None', phrase='foo')>"
@@ -99,3 +127,11 @@ def test_salutation_table_repr():
 def test_state_table_repr():
     row = State(name="foo")
     assert str(row) == "<State(kid='None', name='foo')>"
+
+
+def test_transaction_table_repr():
+    row = Transaction(ktableId=1, profileId=1, valueOld="foo", valueNew="bar")
+    assert (
+        str(row)
+        == "<Transaction(kid='None', ktableId='1'), profileId='1', stampCreated='None', valueOld='foo', valueNew='bar', valueChange='None'>"
+    )

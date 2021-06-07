@@ -89,6 +89,42 @@ class City(Base):
         return f"<City(kid='{self.kid}', name='{self.name}')>"
 
 
+class Contribution(Base):
+    __tablename__ = "contribution"
+
+    kid = Column(Integer, primary_key=True)
+    amount = Column(Float, default=0.0, nullable=False)
+    contributionDate = Column(DateTime, default=datetime.now(), nullable=False)
+    contributionTypeId = Column(
+        Integer, ForeignKey("contribution_type.kid"), nullable=False
+    )
+    deleted = Column(Boolean, default=False, nullable=False)
+    memberId = Column(Integer, ForeignKey("member.kid"), nullable=False)
+    stampCreated = Column(DateTime, default=datetime.now(), nullable=False)
+    stampModified = Column(DateTime, default=datetime.now())
+
+    def __repr__(self):
+        return (
+            f"<Contribution(kid='{self.kid}', amount='{self.amount}', "
+            f"contributionDate='{self.contributionDate}', "
+            f"contributionTypeId='{self.contributionTypeId}', "
+            f"deleted='{self.deleted}', "
+            f"memberId='{self.memberId}', "
+            f"stampCreated='{self.stampCreated}', "
+            f"stampModified='{self.stampModified}')>"
+        )
+
+
+class ContributionType(Base):
+    __tablename__ = "contribution_type"
+
+    kid = Column(Integer, primary_key=True)
+    name = Column(String(50), nullable=False)
+
+    def __repr__(self):
+        return f"<ContributionType(kid='{self.kid}', name='{self.name}')>"
+
+
 class Country(Base):
     __tablename__ = "country"
     kid = Column(Integer, primary_key=True)
@@ -106,6 +142,16 @@ class EntityType(Base):
 
     def __repr__(self):
         return f"<EntityType(kid='{self.kid}', name='{self.name}')>"
+
+
+class KTable(Base):
+    __tablename__ = "ktable"
+
+    kid = Column(Integer, primary_key=True)
+    name = Column(String(20), nullable=False, unique=True)
+
+    def __repr__(self):
+        return f"<KTable(kid='{self.kid}', name='{self.name}')>"
 
 
 class Member(Base):
@@ -174,6 +220,16 @@ class MemberCategory(Base):
         )
 
 
+class Profile(Base):
+    __tablename__ = "profile"
+
+    kid = Column(Integer, primary_key=True)
+    name = Column(String(50), unique=True)
+
+    def __repr__(self):
+        return f"<Profile(kid='{self.kid}', name='{self.name}')>"
+
+
 class Salutation(Base):
     __tablename__ = "salutation"
 
@@ -192,3 +248,25 @@ class State(Base):
 
     def __repr__(self):
         return f"<State(kid='{self.kid}', name='{self.name}')>"
+
+
+class Transaction(Base):
+    __tablename__ = "transaction"
+
+    kid = Column(Integer, primary_key=True)
+    ktableId = Column(Integer, ForeignKey("ktable.kid"), nullable=False)
+    profileId = Column(Integer, ForeignKey("profile.kid"))
+    stampCreated = Column(DateTime, default=datetime.now(), nullable=False)
+    valueOld = Column(String)
+    valueNew = Column(String)
+    valueChange = Column(String)
+
+    def __repr__(self):
+        return (
+            f"<Transaction(kid='{self.kid}', ktableId='{self.ktableId}'), "
+            f"profileId='{self.profileId}', "
+            f"stampCreated='{self.stampCreated}', "
+            f"valueOld='{self.valueOld}', "
+            f"valueNew='{self.valueNew}', "
+            f"valueChange='{self.valueChange}'>"
+        )
