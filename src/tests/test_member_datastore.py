@@ -135,3 +135,12 @@ def test_transaction_table_repr():
         str(row)
         == "<Transaction(kid='None', ktableId='1'), profileId='1', stampCreated='None', valueOld='foo', valueNew='bar', valueChange='None'>"
     )
+
+
+@pytest.mark.parametrize(
+    "arg1,arg2,expectation", [("foo", "foo", True), ("foo", "bar", False)]
+)
+def test_activity_obj_equality(arg1, arg2, expectation):
+    row1 = Activity(kid=1, code="x", name=arg1)
+    row2 = Activity(kid=1, code="x", name=arg2)
+    assert (row1 == row2) == expectation

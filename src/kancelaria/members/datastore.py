@@ -7,7 +7,23 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, F
 from sqlalchemy.ext.declarative import declarative_base
 
 
-Base = declarative_base()
+class Base(object):
+    def __eq__(self, other):
+        classes_match = isinstance(other, self.__class__)
+        a = dict(self.__dict__)
+        a.pop("_sa_instance_state", None)
+        b = dict(other.__dict__)
+        b.pop("_sa_instance_state", None)
+
+        attr_match = a == b
+
+        return classes_match and attr_match
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
+Base = declarative_base(cls=Base)
 
 
 class Activity(Base):
