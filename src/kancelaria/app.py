@@ -23,7 +23,7 @@ from PySide2.QtWidgets import (
 from PySide2.QtGui import QIcon
 
 from . import __version__, __author__
-from .members.gui import MembersWindow
+from .members.home_gui import MembersHomeWindow
 
 
 class Kancelaria(QMainWindow):
@@ -124,7 +124,7 @@ class Kancelaria(QMainWindow):
         print("Launch here bulletin window.")
 
     def launch_members_widget(self, s):
-        self.widget = MembersWindow()
+        self.widget = MembersHomeWindow()
         self.widget.show()
 
 
